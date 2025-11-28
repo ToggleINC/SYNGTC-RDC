@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNGTC-RDC - Fiche Descriptive des Fonctionnalités</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            background: #ffffff;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #00b894;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #00b894;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #636e72;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .header .org {
+            color: #636e72;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            background: #00b894;
+            color: white;
+            padding: 12px 20px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        .subsection {
+            margin-bottom: 20px;
+            padding-left: 15px;
+        }
+        
+        .subsection-title {
+            color: #00b894;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border-left: 4px solid #00b894;
+            padding-left: 10px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00b894;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .info-box {
+            background: #f5f6fa;
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box strong {
+            color: #00b894;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        table th {
+            background: #00b894;
+            color: white;
+            font-weight: 600;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f5f6fa;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-primary {
+            background: #00b894;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+        
+        .badge-danger {
+            background: #e17055;
+            color: white;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #636e72;
+            font-size: 12px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SYNGTC-RDC</h1>
+        <div class="subtitle">Système National de Gestion et de Traçabilité des Criminels</div>
+        <div class="org">Ministère de l'Intérieur, Sécurité, Décentralisation et Affaires Coutumières</div>
+        <div style="margin-top: 15px; color: #636e72; font-size: 14px;">
+            <strong>Version 1.0.0</strong> | République Démocratique du Congo | 2025
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">1. Vue d'ensemble</div>
+        <div class="info-box">
+            <strong>Objectif :</strong> Centraliser, suivre, analyser et géolocaliser tous les individus impliqués dans des actes criminels (kuluna, vols à mains armées, violences urbaines, récidivistes) sur l'ensemble du territoire via une base de données interconnectée Police – ANR – Ministère de l'Intérieur.
+        </div>
+        <p style="margin-top: 15px;">
+            Le SYNGTC-RDC est une plateforme web sécurisée permettant l'enregistrement, le suivi et l'analyse des données criminelles à l'échelle nationale. Le système garantit l'interconnexion entre tous les postes de police, l'ANR et le Ministère de l'Intérieur.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2. Gestion des Utilisateurs et Authentification</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">2.1. Rôles et Permissions</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rôle</th>
+                        <th>Description</th>
+                        <th>Permissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-primary">Agent</span></td>
+                        <td>Agent de police sur le terrain</td>
+                        <td>Enregistrer criminels et cas, consulter données</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-primary">Superviseur</span></td>
+                        <td>Superviseur de poste de police</td>
+                        <td>Toutes les permissions agent + gestion équipe</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">Admin PNC</span></td>
+                        <td>Administrateur Police Nationale Congolaise</td>
+                        <td>Gestion complète des données PNC</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">Admin ANR</span></td>
+                        <td>Administrateur Agence Nationale de Renseignements</td>
+                        <td>Gestion complète des données ANR</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-danger">Admin Ministère</span></td>
+                        <td>Administrateur Ministère de l'Intérieur</td>
+                        <td>Accès total + gestion utilisateurs + backups</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">2.2. Authentification</div>
+            <ul class="feature-list">
+                <li>Connexion sécurisée par email et mot de passe</li>
+                <li>JWT (JSON Web Tokens) pour l'authentification</li>
+                <li>Traçabilité des sessions (IP, user agent, horodatage)</li>
+                <li>Gestion des mots de passe (hashage bcrypt)</li>
+                <li>Désactivation de compte possible</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">2.3. Gestion du Profil</div>
+            <ul class="feature-list">
+                <li>Modification des informations personnelles</li>
+                <li>Changement de mot de passe</li>
+                <li>Visualisation de son propre profil</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">2.4. Administration des Utilisateurs</div>
+            <div class="info-box">
+                <strong>Accessible uniquement aux administrateurs</strong>
+            </div>
+            <ul class="feature-list">
+                <li>Création de nouveaux utilisateurs</li>
+                <li>Modification des utilisateurs existants</li>
+                <li>Désactivation/Activation de comptes</li>
+                <li>Liste complète des utilisateurs avec filtres</li>
+                <li>Recherche par nom, email, rôle, région</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">3. Gestion des Criminels</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">3.1. Enregistrement d'un Criminel</div>
+            <div class="info-box">
+                <strong>Qui peut enregistrer :</strong> Tous les utilisateurs authentifiés (agents, superviseurs, admins)
+            </div>
+            <ul class="feature-list">
+                <li><strong>Informations personnelles :</strong> Nom, prénom, date et lieu de naissance, adresse complète (quartier, avenue, région)</li>
+                <li><strong>Informations criminelles :</strong> Type d'infraction (kuluna, braquage, vol, violence, trafic de drogue, vandalisme), niveau de dangerosité (faible, modéré, élevé)</li>
+                <li><strong>Contexte :</strong> Parrainage, bande, gang</li>
+                <li><strong>Saisies :</strong> Armes saisies, objets saisis (listes multiples)</li>
+                <li><strong>Géolocalisation :</strong> Coordonnées GPS (latitude, longitude) du lieu d'arrestation</li>
+                <li><strong>Fichiers :</strong> Photo, empreintes digitales (upload)</li>
+                <li><strong>Notes :</strong> Informations complémentaires</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">3.2. Numéro Criminel Unique</div>
+            <div class="info-box">
+                Format : <strong>CR-{timestamp}-{random}</strong> (ex: CR-L8KX-ABC123)
+                <br>Généré automatiquement et unique à l'échelle nationale
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">3.3. Score de Dangerosité IA</div>
+            <ul class="feature-list">
+                <li>Calcul automatique basé sur : niveau de dangerosité, type d'infraction, armes saisies, historique des cas</li>
+                <li>Score de 0 à 100</li>
+                <li>Mise à jour automatique lors de nouveaux cas</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">3.4. Liste et Recherche</div>
+            <ul class="feature-list">
+                <li>Affichage paginé des criminels</li>
+                <li>Recherche par nom, prénom, numéro criminel</li>
+                <li>Filtres par type d'infraction, niveau de dangerosité, quartier, bande</li>
+                <li>Tri et pagination</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">3.5. Détails d'un Criminel</div>
+            <ul class="feature-list">
+                <li>Affichage complet des informations personnelles et criminelles</li>
+                <li>Historique des cas associés</li>
+                <li>Informations système (date d'enregistrement, récidiviste, coordonnées GPS)</li>
+                <li>Bouton de modification</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">3.6. Modification et Suppression</div>
+            <ul class="feature-list">
+                <li>Modification des informations d'un criminel (bouton "Modifier")</li>
+                <li>Suppression individuelle (bouton "Supprimer" avec confirmation)</li>
+                <li>Suppression massive (admin uniquement - "Tout supprimer")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">4. Gestion des Cas</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">4.1. Enregistrement d'un Cas</div>
+            <div class="info-box">
+                <strong>Qui peut enregistrer :</strong> Tous les utilisateurs authentifiés (agents, superviseurs, admins)
+                <br>Un cas représente une arrestation ou un incident impliquant un criminel déjà enregistré.
+            </div>
+            <ul class="feature-list">
+                <li><strong>Sélection du criminel :</strong> Choix parmi les criminels enregistrés</li>
+                <li><strong>Date et heure d'arrestation :</strong> Horodatage précis</li>
+                <li><strong>Lieu d'arrestation :</strong> Adresse textuelle</li>
+                <li><strong>Coordonnées GPS :</strong> Latitude et longitude (optionnelles)</li>
+                <li><strong>Description :</strong> Détails de l'incident</li>
+                <li><strong>Type d'infraction :</strong> Classification du cas</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">4.2. Numéro de Cas Unique</div>
+            <div class="info-box">
+                Format : <strong>CAS-{timestamp}-{random}</strong> (ex: CAS-L8KX-ABC123)
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">4.3. Détection Automatique des Récidivistes</div>
+            <ul class="feature-list">
+                <li>Le système détecte automatiquement si un criminel a déjà un cas enregistré</li>
+                <li>Marquage automatique comme récidiviste</li>
+                <li>Envoi d'alerte en temps réel via Socket.io</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">4.4. Suivi Judiciaire</div>
+            <ul class="feature-list">
+                <li><strong>Statuts :</strong> Enquête, Mandat, Condamné, Libéré, Recours</li>
+                <li>Mise à jour du statut judiciaire</li>
+                <li>Dates de libération et de condamnation</li>
+                <li>Informations sur les mandats et recours</li>
+                <li>Alertes automatiques lors de libérations</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">4.5. Liste des Cas</div>
+            <ul class="feature-list">
+                <li>Affichage paginé de tous les cas</li>
+                <li>Colonnes : Numéro, Criminel, Date, Lieu, Statut</li>
+                <li>Filtres par statut judiciaire, poste de police, dates</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">5. Cartographie Criminelle</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">5.1. Carte Interactive</div>
+            <ul class="feature-list">
+                <li>Carte basée sur OpenStreetMap (Leaflet)</li>
+                <li>Centre par défaut : Kinshasa</li>
+                <li>Zoom et navigation interactifs</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">5.2. Marqueurs des Criminels</div>
+            <ul class="feature-list">
+                <li>Affichage des criminels avec coordonnées GPS</li>
+                <li>Popup au clic : nom, numéro criminel, quartier, score de dangerosité</li>
+                <li>Limite d'affichage : 100 marqueurs</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">5.3. Zones Rouges (Hotspots)</div>
+            <ul class="feature-list">
+                <li>Identification automatique des quartiers à risque</li>
+                <li>Cercles colorés selon le niveau de danger :
+                    <ul style="margin-left: 20px; margin-top: 5px;">
+                        <li><strong>Rouge :</strong> ≥20 cas (danger élevé)</li>
+                        <li><strong>Orange :</strong> 10-19 cas (danger modéré)</li>
+                        <li><strong>Vert :</strong> 3-9 cas (danger faible)</li>
+                    </ul>
+                </li>
+                <li>Rayon de 500 mètres par zone</li>
+                <li>Popup avec quartier et nombre de cas</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">5.4. Filtres Cartographiques</div>
+            <ul class="feature-list">
+                <li>Filtrage par région</li>
+                <li>Filtrage par quartier</li>
+                <li>Filtrage par type d'infraction</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">5.5. Statistiques par Région</div>
+            <ul class="feature-list">
+                <li>Total de criminels par région</li>
+                <li>Nombre de criminels à danger élevé</li>
+                <li>Nombre de récidivistes</li>
+                <li>Score de dangerosité moyen</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">6. Système d'Alertes</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">6.1. Alertes en Temps Réel</div>
+            <ul class="feature-list">
+                <li>Communication en temps réel via Socket.io</li>
+                <li>Notifications instantanées dans l'interface</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">6.2. Types d'Alertes</div>
+            <ul class="feature-list">
+                <li><strong>Récidiviste détecté :</strong> Lorsqu'un criminel déjà fiché est arrêté à nouveau</li>
+                <li><strong>Criminel dangereux :</strong> Lorsqu'un criminel avec score élevé est enregistré</li>
+                <li><strong>Libération :</strong> Lorsqu'un criminel est libéré</li>
+                <li><strong>Gang reformé :</strong> Détection de regroupement de criminels dans un quartier</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">6.3. Page des Alertes</div>
+            <ul class="feature-list">
+                <li>Affichage de toutes les alertes</li>
+                <li>Tri par priorité et date</li>
+                <li>Filtres par type d'alerte</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">7. Tableau de Bord</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">7.1. Statistiques Globales</div>
+            <ul class="feature-list">
+                <li>Total de criminels enregistrés</li>
+                <li>Total de cas enregistrés</li>
+                <li>Nombre de récidivistes</li>
+                <li>Répartition par niveau de dangerosité</li>
+                <li>Répartition par type d'infraction</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">7.2. Graphiques et Visualisations</div>
+            <ul class="feature-list">
+                <li>Graphiques en barres et camemberts</li>
+                <li>Évolution temporelle</li>
+                <li>Statistiques par région</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">8. Fonctionnalités Hors Ligne</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">8.1. Mode Hors Ligne</div>
+            <ul class="feature-list">
+                <li>Enregistrement des données même sans connexion Internet</li>
+                <li>Stockage local dans IndexedDB</li>
+                <li>Indicateur visuel du statut de connexion</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">8.2. Synchronisation Automatique</div>
+            <ul class="feature-list">
+                <li>Synchronisation automatique à la reconnexion</li>
+                <li>File d'attente des opérations en attente</li>
+                <li>Affichage du nombre d'opérations en attente</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">8.3. Opérations Supportées Hors Ligne</div>
+            <ul class="feature-list">
+                <li>Création de nouveaux criminels</li>
+                <li>Modification de criminels existants</li>
+                <li>Création de nouveaux cas</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">9. Système de Sauvegarde</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">9.1. Sauvegarde Automatique Quotidienne</div>
+            <ul class="feature-list">
+                <li>Génération automatique à 23h59 (heure de Kinshasa)</li>
+                <li>Format Excel (.xlsx)</li>
+                <li>Contenu : Criminels, Cas, Alertes, Logs d'actions</li>
+                <li>Organisation par date dans des dossiers</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">9.2. Sauvegarde Manuelle</div>
+            <ul class="feature-list">
+                <li>Génération à la demande (admin uniquement)</li>
+                <li>Bouton "Générer Backup" dans la page de gestion</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">9.3. Gestion des Backups</div>
+            <ul class="feature-list">
+                <li>Liste de tous les backups disponibles</li>
+                <li>Affichage de la date, taille, nom du fichier</li>
+                <li>Téléchargement des fichiers Excel</li>
+                <li>Tri par date (plus récent en premier)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">10. Sécurité et Traçabilité</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">10.1. Sécurité</div>
+            <ul class="feature-list">
+                <li>Authentification JWT sécurisée</li>
+                <li>Hashage des mots de passe (bcrypt)</li>
+                <li>Validation des données côté serveur</li>
+                <li>Protection contre les injections SQL</li>
+                <li>Gestion des sessions utilisateurs</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">10.2. Traçabilité</div>
+            <ul class="feature-list">
+                <li>Enregistrement de toutes les actions dans les logs</li>
+                <li>Traçage de l'utilisateur qui a effectué chaque action</li>
+                <li>Horodatage de toutes les opérations</li>
+                <li>Historique des sessions (IP, user agent)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">11. Technologies Utilisées</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">11.1. Backend</div>
+            <ul class="feature-list">
+                <li>Node.js avec Express</li>
+                <li>TypeScript</li>
+                <li>PostgreSQL (base de données)</li>
+                <li>Socket.io (temps réel)</li>
+                <li>JWT (authentification)</li>
+                <li>ExcelJS (génération de fichiers Excel)</li>
+                <li>node-cron (planification des tâches)</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">11.2. Frontend</div>
+            <ul class="feature-list">
+                <li>React avec TypeScript</li>
+                <li>Material-UI (interface utilisateur)</li>
+                <li>React Router (navigation)</li>
+                <li>Leaflet/React-Leaflet (cartographie)</li>
+                <li>Chart.js (graphiques)</li>
+                <li>IndexedDB (stockage hors ligne)</li>
+                <li>Axios (requêtes HTTP)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">12. Interconnexion et Accessibilité</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">12.1. Base de Données Unique</div>
+            <div class="info-box">
+                <strong>Interconnexion :</strong> Tous les postes de police, l'ANR et le Ministère de l'Intérieur partagent la même base de données. Un criminel enregistré à Kasavubu est immédiatement visible à Kintambo, Bandal, Mont Ngafula, Lubumbashi, Goma, etc.
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">12.2. Accessibilité</div>
+            <ul class="feature-list">
+                <li>Interface web accessible depuis n'importe quel navigateur</li>
+                <li>Responsive design (adapté aux tablettes)</li>
+                <li>Fonctionnement hors ligne</li>
+                <li>Module mobile prévu (React Native/Expo)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>SYNGTC-RDC</strong> - Système National de Gestion et de Traçabilité des Criminels</p>
+        <p>Ministère de l'Intérieur, Sécurité, Décentralisation et Affaires Coutumières</p>
+        <p>République Démocratique du Congo | Version 1.0.0 | © 2025 MISDAC</p>
+        <p style="margin-top: 10px; font-size: 10px; color: #b2bec3;">
+            Document généré le <script>document.write(new Date().toLocaleDateString('fr-FR'));</script>
+        </p>
+    </div>
+
+    <script>
+        // Fonction pour télécharger en PDF
+        function downloadPDF() {
+            window.print();
+        }
+        
+        // Ajouter un bouton d'impression si pas en mode impression
+        if (window.matchMedia) {
+            const mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener((mql) => {
+                if (!mql.matches) {
+                    // Créer un bouton de téléchargement
+                    const button = document.createElement('button');
+                    button.textContent = '📥 Télécharger en PDF';
+                    button.style.cssText = 'position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; background: #00b894; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000;';
+                    button.onclick = downloadPDF;
+                    document.body.appendChild(button);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
