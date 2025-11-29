@@ -163,8 +163,10 @@ class OfflineService {
     for (const operation of operations) {
       try {
         if (operation.method === 'POST') {
+          // Ignorer la réponse car on n'en a pas besoin
           await axios.post(operation.url, operation.data);
         } else {
+          // Ignorer la réponse car on n'en a pas besoin
           await axios.put(operation.url, operation.data);
         }
 

@@ -14,7 +14,6 @@ import {
 import { Visibility, VisibilityOff, Save as SaveIcon, ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
 import { useSnackbar } from 'notistack';
 
 const Profile: React.FC = () => {
@@ -40,6 +39,7 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     fetchProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProfile = async () => {
