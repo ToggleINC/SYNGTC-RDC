@@ -1,11 +1,13 @@
 /**
- * Configuration Supabase via API REST
+ * Configuration Supabase typée (API REST)
  * 
- * Ce fichier remplace la connexion PostgreSQL directe
- * car le projet Supabase est en mode "Local-Only Database"
+ * ⚠ IMPORTANT :
+ * Ce fichier nécessite que les types générés par Supabase
+ * soient présents dans : src/types/supabase.ts
  */
 
 import { createClient } from '@supabase/supabase-js';
+import type { Database } from '../types/supabase'; // <-- IMPORT DES TYPES
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,17 +16,19 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseServiceKey) {
-  console.error('❌ Variables Supabase manquantes dans .env:');
+  console.error('❌ Variables Supabase manquantes dans backend/.env :');
   console.error('   SUPABASE_URL:', supabaseUrl ? '✅' : '❌');
   console.error('   SUPABASE_SERVICE_ROLE_KEY:', supabaseServiceKey ? '✅' : '❌');
   console.error('\n📝 Ajoutez ces variables dans backend/.env');
-  console.error('   Vous les trouverez dans Supabase → Settings → API');
+  process.exit(1);
 }
 
-// Client Supabase avec service_role key (accès complet)
-export const supabase = createClient(
-  supabaseUrl || '',
-  supabaseServiceKey || '',
+/**
+ * 🔥 Client Supabase typé + service_role
+ */
+export const supabase = createClient<Database>(
+  supabaseUrl,
+  supabaseServiceKey,
   {
     auth: {
       autoRefreshToken: false,
@@ -33,36 +37,26 @@ export const supabase = createClient(
   }
 );
 
-// Test de connexion
+/**
+ * 🔍 Test de connexion simple
+ */
 export async function testSupabaseConnection(): Promise<boolean> {
-  // Vérifier d'abord que les variables sont définies
-  if (!supabaseUrl || !supabaseServiceKey) {
-    console.error('❌ Variables Supabase manquantes dans backend/.env');
-    console.error('   Ajoutez SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY');
-    console.error('   Vous les trouverez dans Supabase → Settings → API');
-    return false;
-  }
-
   try {
-    // Test simple : compter les utilisateurs
-    const { count, error } = await supabase
+    const { error } = await supabase
       .from('users')
-      .select('*', { count: 'exact', head: true });
-    
+      .select('*', { head: true });
+
     if (error) {
-      console.error('❌ Erreur de connexion Supabase:', error.message);
-      console.error('   Code:', error.code);
-      console.error('   Vérifiez que SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY sont corrects dans backend/.env');
+      console.error('❌ Erreur Supabase:', error);
       return false;
     }
-    
-    console.log('✅ Connexion Supabase API REST réussie');
+
+    console.log('✅ Connexion Supabase OK.');
     return true;
-  } catch (error: any) {
-    console.error('❌ Erreur lors du test Supabase:', error.message);
+  } catch (err: any) {
+    console.error('❌ Erreur test Supabase:', err.message);
     return false;
   }
 }
 
 export default supabase;
-

@@ -124,7 +124,7 @@ router.post(
       };
 
       const token = jwt.sign(
-        { userId: String(user.id), email: user.email, role: user.role },
+        { userId: user.id, email: user.email, role: user.role },
         jwtSecret,
         signOptions
       );
