@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { body, validationResult } from 'express-validator';
 import { supabase } from '../config/supabase';
 import { authenticate, AuthRequest } from '../middleware/auth';
@@ -125,11 +125,13 @@ router.post(
 
       // Générer le token JWT
       const jwtSecret: string = process.env.JWT_SECRET || 'default_secret';
-      const expiresIn: string = process.env.JWT_EXPIRES_IN || '24h';
+      const signOptions: SignOptions = {
+        expiresIn: process.env.JWT_EXPIRES_IN || '24h'
+      };
       const token = jwt.sign(
         { userId: user.id, email: user.email, role: user.role },
         jwtSecret,
-        { expiresIn }
+        signOptions
       );
 
       // Enregistrer la connexion (ne pas bloquer si l'insertion échoue)
