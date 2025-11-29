@@ -129,7 +129,7 @@ router.post(
         expiresIn: process.env.JWT_EXPIRES_IN || '24h'
       };
       const token = jwt.sign(
-        { userId: user.id, email: user.email, role: user.role },
+        { userId: String(user.id), email: user.email, role: user.role },
         jwtSecret,
         signOptions
       );
