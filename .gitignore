@@ -59,3 +59,11 @@ coverage/
 .expo/
 .expo-shared/
 
+# Fly.io - Fichiers parasites à ignorer
+.fly/
+fly-launch.toml
+fly.toml.bak
+tmp/
+tmp/manifest.json
+manifest.json
+
