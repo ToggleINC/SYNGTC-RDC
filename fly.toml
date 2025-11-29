@@ -3,7 +3,6 @@ primary_region = "cdg"
 
 [build]
   dockerfile = "Dockerfile"
-  build_context = "."
 
 [env]
   PORT = "8080"
