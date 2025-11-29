@@ -32,6 +32,7 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   Search as SearchIcon,
+  Visibility as VisibilityIcon,
 } from '@mui/icons-material';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
