@@ -9,7 +9,8 @@ WORKDIR /app
 COPY backend/package*.json ./
 
 # Installer TOUTES les dépendances (y compris ts-node)
-RUN npm ci
+# Utiliser --production=false pour installer aussi les devDependencies (ts-node)
+RUN npm ci --production=false
 
 # Copier tout le code source depuis backend/
 COPY backend/. .
@@ -20,6 +21,9 @@ EXPOSE 8080
 # Variables d'environnement
 ENV NODE_ENV=production
 ENV PORT=8080
+
+# Vérifier que ts-node est disponible
+RUN npx ts-node --version || (echo "ts-node non trouvé" && exit 1)
 
 # Démarrer l'application directement avec ts-node
 CMD ["npx", "ts-node", "src/server.ts"]
