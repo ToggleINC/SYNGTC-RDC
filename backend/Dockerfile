@@ -5,14 +5,14 @@ FROM node:20-alpine
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers package
-COPY package*.json ./
+# Copier les fichiers package depuis le dossier backend (contexte racine)
+COPY backend/package*.json ./
 
-# Installer TOUTES les dépendances (y compris ts-node pour exécuter TypeScript)
+# Installer TOUTES les dépendances (y compris ts-node)
 RUN npm ci
 
-# Copier tout le code source
-COPY . .
+# Copier tout le code source du backend
+COPY backend/ .
 
 # Exposer le port
 EXPOSE 5000
@@ -21,5 +21,5 @@ EXPOSE 5000
 ENV NODE_ENV=production
 ENV PORT=5000
 
-# Démarrer l'application directement avec ts-node (pas de compilation)
+# Démarrer l'application directement avec ts-node
 CMD ["npx", "ts-node", "src/server.ts"]
