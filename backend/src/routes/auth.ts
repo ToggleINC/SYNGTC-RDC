@@ -139,8 +139,9 @@ router.post(
         await supabase
           .from('user_sessions')
           .insert({
-            user_id: user.id,
-            ip_address: req.ip || req.socket.remoteAddress || 'unknown',
+            user_id: String(user.id),
+            ip_address: String(req.ip || req.socket.remoteAddress || 'unknown'),
+            user_agent: req.headers['user-agent'] || null,
             created_at: new Date().toISOString(),
           });
       } catch (sessionError) {
@@ -170,11 +171,11 @@ router.post(
 // Obtenir le profil de l'utilisateur connecté
 router.get('/me', authenticate, async (req: AuthRequest, res) => {
   try {
-    const { data: user, error } = await supabase
-      .from('users')
-      .select('id, email, nom, prenom, role, poste, region, telephone, created_at')
-      .eq('id', req.user!.id)
-      .single();
+      const { data: user, error } = await supabase
+        .from('users')
+        .select('id, email, nom, prenom, role, poste, region, telephone, created_at')
+        .eq('id', String(req.user!.id))
+        .single();
 
     if (error || !user) {
       return res.status(404).json({ error: 'Utilisateur introuvable' });
@@ -224,7 +225,7 @@ router.put(
       const { data: user, error: updateError } = await supabase
         .from('users')
         .update(updateData)
-        .eq('id', req.user!.id)
+        .eq('id', String(req.user!.id))
         .select('id, email, nom, prenom, role, poste, region, telephone, created_at')
         .single();
 
@@ -237,10 +238,10 @@ router.put(
       await supabase
         .from('action_logs')
         .insert({
-          user_id: req.user!.id,
+          user_id: String(req.user!.id),
           action_type: 'UPDATE',
           entity_type: 'user',
-          entity_id: req.user!.id,
+          entity_id: String(req.user!.id),
           details: { profile_update: true }, // Supabase convertit automatiquement en JSONB
           created_at: new Date().toISOString(),
         });
