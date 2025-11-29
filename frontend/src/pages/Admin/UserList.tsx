@@ -30,7 +30,6 @@ import {
   Add as AddIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
-  Visibility as VisibilityIcon,
   Block as BlockIcon,
   CheckCircle as CheckCircleIcon,
 } from '@mui/icons-material';
@@ -58,7 +57,6 @@ const UserList: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('');
-  const [regionFilter, setRegionFilter] = useState('');
   const [total, setTotal] = useState(0);
   const [openForm, setOpenForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -73,7 +71,6 @@ const UserList: React.FC = () => {
         params: {
           search: search || undefined,
           role: roleFilter || undefined,
-          region: regionFilter || undefined,
           page: page + 1,
           limit: rowsPerPage,
         },
@@ -86,7 +83,7 @@ const UserList: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [page, rowsPerPage, search, roleFilter, regionFilter, enqueueSnackbar]);
+  }, [page, rowsPerPage, search, roleFilter, enqueueSnackbar]);
 
   useEffect(() => {
     fetchUsers();

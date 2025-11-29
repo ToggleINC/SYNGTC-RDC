@@ -42,6 +42,7 @@ const OfflineIndicator: React.FC = () => {
       unsubscribe();
       clearInterval(interval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enqueueSnackbar]);
 
   const handleSync = async () => {

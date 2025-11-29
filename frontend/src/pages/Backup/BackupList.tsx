@@ -40,6 +40,7 @@ const BackupList: React.FC = () => {
 
   useEffect(() => {
     fetchBackups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchBackups = async () => {
@@ -61,7 +62,7 @@ const BackupList: React.FC = () => {
   const handleGenerateBackup = async () => {
     setGenerating(true);
     try {
-      const response = await axios.post('/api/backup/generate');
+      await axios.post('/api/backup/generate');
       enqueueSnackbar('Backup généré avec succès', { variant: 'success' });
       fetchBackups();
     } catch (error: any) {

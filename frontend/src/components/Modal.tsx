@@ -6,10 +6,8 @@ import {
   DialogActions,
   IconButton,
   Typography,
-  Box,
-  Button,
 } from '@mui/material';
-import { Close as CloseIcon, ArrowBack as ArrowBackIcon } from '@mui/icons-material';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 interface ModalProps {
   open: boolean;

@@ -21,6 +21,7 @@ const CaseDetail: React.FC<CaseDetailProps> = ({ caseId }) => {
     if (caseId) {
       fetchCase();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [caseId]);
 
   const fetchCase = async () => {

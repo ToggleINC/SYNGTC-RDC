@@ -34,7 +34,6 @@ import {
   Delete as DeleteIcon,
   Search as SearchIcon,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import Modal from '../../components/Modal';
@@ -95,8 +94,6 @@ const CaseList: React.FC = () => {
   useEffect(() => {
     fetchCases();
   }, [fetchCases]);
-
-  const navigate = useNavigate();
 
   const handleView = (caseId: string) => {
     setViewModal({ open: true, caseId });
