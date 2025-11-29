@@ -1,11 +1,12 @@
 // Fichier pour Vercel Serverless Functions
-// Note: Ce fichier est une alternative pour Vercel, mais Railway/Render est recommandé pour le backend
+// Backend Node.js simple pour Vercel + Supabase
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import { testSupabaseConnection } from '../src/config/supabase';
 
 dotenv.config();
 
@@ -20,7 +21,6 @@ import filesRoutes from '../src/routes/files';
 import usersRoutes from '../src/routes/users';
 import backupRoutes from '../src/routes/backup';
 import { errorHandler } from '../src/middleware/errorHandler';
-import { pool } from '../src/config/database';
 
 const app = express();
 
@@ -49,16 +49,17 @@ app.use('/api/backup', backupRoutes);
 // Route de santé
 app.get('/api/health', async (req, res) => {
   try {
-    await pool.query('SELECT 1');
+    const isConnected = await testSupabaseConnection();
     res.json({ 
       status: 'ok', 
-      database: 'connected',
+      database: isConnected ? 'connected' : 'disconnected',
       timestamp: new Date().toISOString() 
     });
   } catch (error) {
     res.status(500).json({ 
       status: 'error', 
-      database: 'disconnected' 
+      database: 'disconnected',
+      error: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 });
