@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   Box,
   Paper,
@@ -25,6 +25,21 @@ const Alerts: React.FC = () => {
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
   const [prioriteFilter, setPrioriteFilter] = useState('');
+
+  const fetchAlerts = useCallback(async () => {
+    try {
+      const params: any = {};
+      if (typeFilter) params.type = typeFilter;
+      if (prioriteFilter) params.priorite = prioriteFilter;
+
+      const response = await axios.get('/api/alerts', { params });
+      setAlerts(response.data.alerts);
+    } catch (error) {
+      console.error('Erreur:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [typeFilter, prioriteFilter]);
 
   useEffect(() => {
     fetchAlerts();
@@ -53,27 +68,7 @@ const Alerts: React.FC = () => {
     return () => {
       socket.disconnect();
     };
-  }, []);
-
-  const fetchAlerts = async () => {
-    try {
-      const params: any = {};
-      if (typeFilter) params.type = typeFilter;
-      if (prioriteFilter) params.priorite = prioriteFilter;
-
-      const response = await axios.get('/api/alerts', { params });
-      setAlerts(response.data.alerts);
-    } catch (error) {
-      console.error('Erreur:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Refetch when filters change
-  useEffect(() => {
-    fetchAlerts();
-  }, [typeFilter, prioriteFilter]);
+  }, [fetchAlerts]);
 
   // Filter alerts locally by search term
   const filteredAlerts = alerts.filter((alert) => {

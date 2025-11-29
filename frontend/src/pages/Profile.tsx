@@ -18,12 +18,10 @@ import { useAuth } from '../context/AuthContext';
 import { useSnackbar } from 'notistack';
 
 const Profile: React.FC = () => {
-  const { user: authUser, login } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
-  const [user, setUser] = useState<any>(null);
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
@@ -48,7 +46,6 @@ const Profile: React.FC = () => {
     try {
       const response = await axios.get('/api/auth/me');
       const userData = response.data.user;
-      setUser(userData);
       setFormData({
         nom: userData.nom || '',
         prenom: userData.prenom || '',

@@ -142,7 +142,7 @@ class OfflineService {
     // Récupérer toutes les opérations synchronisées et les supprimer
     const allOperations = await this.db.getAll('operations');
     const synced = allOperations.filter(op => op.synced);
-    
+
     const tx = this.db.transaction('operations', 'readwrite');
     await Promise.all(synced.map((op) => tx.store.delete(op.id)));
   }
@@ -162,16 +162,15 @@ class OfflineService {
 
     for (const operation of operations) {
       try {
-        let response;
         if (operation.method === 'POST') {
-          response = await axios.post(operation.url, operation.data);
+          await axios.post(operation.url, operation.data);
         } else {
-          response = await axios.put(operation.url, operation.data);
+          await axios.put(operation.url, operation.data);
         }
 
         // Marquer comme synchronisé
         await this.markAsSynced(operation.id);
-        
+
         // Supprimer après un délai pour permettre le nettoyage
         setTimeout(() => {
           this.deleteOperation(operation.id);
