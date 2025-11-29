@@ -54,7 +54,7 @@ router.delete(
       await supabase
         .from('action_logs')
         .insert({
-          user_id: req.user!.id,
+          user_id: String(req.user!.id),
           action_type: 'DELETE_ALL',
           entity_type: 'criminal',
           details: { count }, // Supabase convertit automatiquement en JSONB
@@ -223,10 +223,10 @@ router.post(
       await supabase
         .from('action_logs')
         .insert({
-          user_id: req.user!.id,
+          user_id: String(req.user!.id),
           action_type: 'CREATE',
           entity_type: 'criminal',
-          entity_id: criminal.id,
+          entity_id: String(criminal.id),
           details: { numero_criminel }, // Supabase convertit automatiquement en JSONB
           created_at: new Date().toISOString(),
         });
@@ -566,10 +566,10 @@ router.put('/:id', async (req: AuthRequest, res) => {
     await supabase
       .from('action_logs')
       .insert({
-        user_id: req.user!.id,
+        user_id: String(req.user!.id),
         action_type: 'UPDATE',
         entity_type: 'criminal',
-        entity_id: id,
+        entity_id: String(id),
         details: updateData, // Supabase convertit automatiquement en JSONB
         created_at: new Date().toISOString(),
       });
@@ -619,10 +619,10 @@ router.delete('/:id', async (req: AuthRequest, res) => {
     await supabase
       .from('action_logs')
       .insert({
-        user_id: req.user!.id,
+        user_id: String(req.user!.id),
         action_type: 'DELETE',
         entity_type: 'criminal',
-        entity_id: id,
+        entity_id: String(id),
         details: { numero_criminel: existing.numero_criminel }, // Supabase convertit automatiquement en JSONB
         created_at: new Date().toISOString(),
       });

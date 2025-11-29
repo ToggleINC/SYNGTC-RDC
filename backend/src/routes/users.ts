@@ -142,10 +142,10 @@ router.post(
       await supabase
         .from('action_logs')
         .insert({
-          user_id: req.user!.id,
+          user_id: String(req.user!.id),
           action_type: 'CREATE',
           entity_type: 'user',
-          entity_id: user.id,
+          entity_id: String(user.id),
           details: { email }, // Supabase convertit automatiquement en JSONB
           created_at: new Date().toISOString(),
         });
@@ -233,10 +233,10 @@ router.put(
       await supabase
         .from('action_logs')
         .insert({
-          user_id: req.user!.id,
+          user_id: String(req.user!.id),
           action_type: 'UPDATE',
           entity_type: 'user',
-          entity_id: id,
+          entity_id: String(id),
           details: req.body, // Supabase convertit automatiquement en JSONB
           created_at: new Date().toISOString(),
         });
@@ -287,10 +287,10 @@ router.delete('/:id', authorize('admin_pnc', 'admin_anr', 'admin_ministere'), as
     await supabase
       .from('action_logs')
       .insert({
-        user_id: req.user!.id,
+        user_id: String(req.user!.id),
         action_type: 'DELETE',
         entity_type: 'user',
-        entity_id: id,
+        entity_id: String(id),
         details: { deleted: true }, // Supabase convertit automatiquement en JSONB
         created_at: new Date().toISOString(),
       });

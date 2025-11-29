@@ -108,10 +108,10 @@ router.post(
       await supabase
         .from('action_logs')
         .insert({
-          user_id: req.user!.id,
+          user_id: String(req.user!.id),
           action_type: 'CREATE',
           entity_type: 'case',
-          entity_id: caseData.id,
+          entity_id: String(caseData.id),
           details: { numero_cas: numeroCas }, // Supabase convertit automatiquement en JSONB
           created_at: new Date().toISOString(),
         });
@@ -263,10 +263,10 @@ router.delete('/:id', async (req: AuthRequest, res) => {
     await supabase
       .from('action_logs')
       .insert({
-        user_id: req.user!.id,
+        user_id: String(req.user!.id),
         action_type: 'DELETE',
         entity_type: 'case',
-        entity_id: id,
+        entity_id: String(id),
         details: { numero_cas: id }, // Supabase convertit automatiquement en JSONB
         created_at: new Date().toISOString(),
       });
@@ -335,10 +335,10 @@ router.put('/:id', async (req: AuthRequest, res) => {
     await supabase
       .from('action_logs')
       .insert({
-        user_id: req.user!.id,
+        user_id: String(req.user!.id),
         action_type: 'UPDATE',
         entity_type: 'case',
-        entity_id: id,
+        entity_id: String(id),
         details: updateData, // Supabase convertit automatiquement en JSONB
         created_at: new Date().toISOString(),
       });
