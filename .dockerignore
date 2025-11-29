@@ -35,3 +35,7 @@ backups/
 
 # Mobile
 mobile/
+
+# Fichiers de configuration d'autres plateformes
+Procfile
+railway.json
