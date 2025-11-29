@@ -1,17 +1,17 @@
-# Dockerfile pour le backend SYNGTC-RDC
+# Dockerfile pour SYNGTC-RDC Backend sur Fly.io
 FROM node:18-alpine AS builder
 
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers package du backend
-COPY backend/package*.json ./
+# Copier les fichiers package
+COPY package*.json ./
 
-# Installer TOUTES les dépendances (y compris dev pour le build)
+# Installer toutes les dépendances (y compris dev)
 RUN npm ci
 
-# Copier le code source du backend
-COPY backend/ ./
+# Copier tout le code source
+COPY . .
 
 # Compiler TypeScript
 RUN npm run build
@@ -22,19 +22,18 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copier package.json
-COPY backend/package*.json ./
+COPY package*.json ./
 
 # Installer uniquement les dépendances de production
 RUN npm ci --only=production
 
 # Copier le code compilé depuis le builder
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/src ./src
 
 # Exposer le port
 EXPOSE 5000
 
-# Variables d'environnement par défaut
+# Variables d'environnement
 ENV NODE_ENV=production
 ENV PORT=5000
 
