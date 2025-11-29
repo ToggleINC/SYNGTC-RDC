@@ -7,8 +7,8 @@ app = 'syngtc-rdc'
 primary_region = 'cdg'
 
 [build]
-  dockerfile = "backend/Dockerfile"
-  ignorefile = "backend/.dockerignore"
+  dockerfile = "Dockerfile"
+  ignorefile = ".dockerignore"
 
 [env]
   PORT = "8080"
