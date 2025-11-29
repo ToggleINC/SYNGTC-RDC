@@ -1,17 +1,10 @@
-# fly.toml app configuration file generated for syngtc-rdc
+# fly.toml app configuration file generated for syngtc-rdc on 2025-11-29T21:06:26Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'syngtc-rdc'
 primary_region = 'cdg'
-
-[build]
-  dockerfile = "backend/Dockerfile"
-  ignorefile = "backend/.dockerignore"
-
-[env]
-  PORT = "8080"
 
 [http_service]
   internal_port = 8080
