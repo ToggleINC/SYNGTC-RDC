@@ -7,8 +7,7 @@ app = 'syngtc-rdc'
 primary_region = 'cdg'
 
 [build]
-  dockerfile = "Dockerfile"
-  build_context = "."
+  dockerfile = "./Dockerfile"
 
 [env]
   PORT = "8080"
