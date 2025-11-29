@@ -29,7 +29,6 @@ import {
 } from '@mui/material';
 import {
   Add as AddIcon,
-  Visibility as VisibilityIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
   Search as SearchIcon,
