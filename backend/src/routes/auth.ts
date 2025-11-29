@@ -124,12 +124,12 @@ router.post(
       }
 
       // Générer le token JWT
-      const jwtSecret = process.env.JWT_SECRET || 'default_secret';
-      const expiresIn = process.env.JWT_EXPIRES_IN || '24h';
+      const jwtSecret: string = process.env.JWT_SECRET || 'default_secret';
+      const expiresIn: string = process.env.JWT_EXPIRES_IN || '24h';
       const token = jwt.sign(
         { userId: user.id, email: user.email, role: user.role },
         jwtSecret,
-        { expiresIn: expiresIn as string }
+        { expiresIn }
       );
 
       // Enregistrer la connexion (ne pas bloquer si l'insertion échoue)
