@@ -3,8 +3,6 @@ import { ExcelExport } from './excelExport';
 
 class BackupScheduler {
   private cronJob: cron.ScheduledTask | null = null;
-  private excelExport: ExcelExport;
-
   private excelExport: ExcelExport | null = null;
 
   constructor() {

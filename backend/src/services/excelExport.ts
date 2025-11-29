@@ -63,6 +63,11 @@ export class ExcelExport {
       console.error('Erreur récupération criminels:', criminalsError);
     }
 
+    // Dédupliquer les criminels par ID
+    const uniqueCriminals = Array.from(
+      new Map((criminalsData || []).map(c => [c.id, c])).values()
+    );
+
     // Récupérer les cas créés aujourd'hui
     const { data: casesData, error: casesError } = await supabase
       .from('cases')
