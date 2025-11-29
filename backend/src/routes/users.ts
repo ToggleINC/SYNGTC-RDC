@@ -128,7 +128,7 @@ router.post(
           poste,
           region,
           telephone: telephone || null,
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         })
         .select('id, email, nom, prenom, role, poste, region, telephone, is_active, created_at')
         .single();
@@ -147,7 +147,7 @@ router.post(
           entity_type: 'user',
           entity_id: String(user.id),
           details: { email }, // Supabase convertit automatiquement en JSONB
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         });
 
       res.status(201).json({
@@ -183,7 +183,7 @@ router.put(
 
       // Construire l'objet de mise à jour
       const updateData: any = {
-        updated_at: new Date().toISOString(),
+        updated_at: new Date(),
       };
 
       const allowedFields = ['nom', 'prenom', 'role', 'poste', 'region', 'telephone', 'is_active'];
@@ -238,7 +238,7 @@ router.put(
           entity_type: 'user',
           entity_id: String(id),
           details: req.body, // Supabase convertit automatiquement en JSONB
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         });
 
       res.json({
@@ -292,7 +292,7 @@ router.delete('/:id', authorize('admin_pnc', 'admin_anr', 'admin_ministere'), as
         entity_type: 'user',
         entity_id: String(id),
         details: { deleted: true }, // Supabase convertit automatiquement en JSONB
-        created_at: new Date().toISOString(),
+        created_at: new Date(),
       });
 
     res.json({ message: 'Utilisateur supprimé avec succès' });

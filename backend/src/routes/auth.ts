@@ -54,7 +54,7 @@ router.post(
           poste,
           region,
           telephone: telephone || null,
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         })
         .select('id, email, nom, prenom, role, poste, region')
         .single();
@@ -142,7 +142,7 @@ router.post(
             user_id: String(user.id),
             ip_address: String(req.ip || req.socket.remoteAddress || 'unknown'),
             user_agent: req.headers['user-agent'] || null,
-            created_at: new Date().toISOString(),
+            created_at: new Date(),
           });
       } catch (sessionError) {
         // Logger l'erreur mais ne pas bloquer la connexion
@@ -208,7 +208,7 @@ router.put(
       const { nom, prenom, telephone, password } = req.body;
 
       const updateData: any = {
-        updated_at: new Date().toISOString(),
+        updated_at: new Date(),
       };
 
       if (nom) updateData.nom = nom;
@@ -243,7 +243,7 @@ router.put(
           entity_type: 'user',
           entity_id: String(req.user!.id),
           details: { profile_update: true }, // Supabase convertit automatiquement en JSONB
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         });
 
       res.json({

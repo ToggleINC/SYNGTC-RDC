@@ -87,7 +87,7 @@ router.post(
           statut_judiciaire: statut_judiciaire || 'enquete',
           parquet_id: parquet_id || null,
           created_by: req.user!.id,
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         })
         .select()
         .single();
@@ -113,7 +113,7 @@ router.post(
           entity_type: 'case',
           entity_id: String(caseData.id),
           details: { numero_cas: numeroCas }, // Supabase convertit automatiquement en JSONB
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         });
 
       res.status(201).json({
@@ -268,7 +268,7 @@ router.delete('/:id', async (req: AuthRequest, res) => {
         entity_type: 'case',
         entity_id: String(id),
         details: { numero_cas: id }, // Supabase convertit automatiquement en JSONB
-        created_at: new Date().toISOString(),
+        created_at: new Date(),
       });
 
     res.json({ message: 'Cas supprimé avec succès' });
@@ -297,7 +297,7 @@ router.put('/:id', async (req: AuthRequest, res) => {
 
     // Construire l'objet de mise à jour
     const updateFields: any = {
-      updated_at: new Date().toISOString(),
+      updated_at: new Date(),
     };
 
     const allowedFields = [
@@ -340,7 +340,7 @@ router.put('/:id', async (req: AuthRequest, res) => {
         entity_type: 'case',
         entity_id: String(id),
         details: updateData, // Supabase convertit automatiquement en JSONB
-        created_at: new Date().toISOString(),
+        created_at: new Date(),
       });
 
     res.json({
@@ -376,7 +376,7 @@ router.patch('/:id/statut', async (req: AuthRequest, res) => {
         date_condamnation: date_condamnation || null,
         mandat: mandat || null,
         recours: recours || null,
-        updated_at: new Date().toISOString(),
+        updated_at: new Date(),
       })
       .eq('id', id)
       .select()

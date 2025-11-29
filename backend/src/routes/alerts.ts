@@ -71,7 +71,7 @@ router.post(
           // Si elles existent, Supabase convertit automatiquement les objets en JSONB
           ...(location && { location }), // Passer l'objet directement si présent
           ...(metadata && { metadata }), // Passer l'objet directement si présent
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         })
         .select()
         .single();

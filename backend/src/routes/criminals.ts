@@ -58,7 +58,7 @@ router.delete(
           action_type: 'DELETE_ALL',
           entity_type: 'criminal',
           details: { count }, // Supabase convertit automatiquement en JSONB
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         });
 
       res.json({
@@ -196,7 +196,7 @@ router.post(
           danger_score: dangerScore,
           notes: notes ? notes.trim() : null,
           created_by: req.user!.id,
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         })
         .select()
         .single();
@@ -228,7 +228,7 @@ router.post(
           entity_type: 'criminal',
           entity_id: String(criminal.id),
           details: { numero_criminel }, // Supabase convertit automatiquement en JSONB
-          created_at: new Date().toISOString(),
+          created_at: new Date(),
         });
 
       // Envoyer une alerte si dangerosité élevée
@@ -244,7 +244,7 @@ router.post(
             description: `Un criminel dangereux (${nom} ${prenom}) a été enregistré avec un score de ${dangerScore}`,
             priorite: 'elevee',
             criminal_id: criminal.id,
-            created_at: new Date().toISOString(),
+            created_at: new Date(),
           })
           .select()
           .single();
@@ -268,7 +268,7 @@ router.post(
             titre: 'Nouveau criminel dangereux',
             description: `Un criminel dangereux (${nom} ${prenom}) a été enregistré avec un score de ${dangerScore}`,
             priorite: 'elevee',
-            created_at: new Date().toISOString(),
+            created_at: new Date(),
           });
 
           // Émettre aussi l'événement générique 'new-alert' pour la page Alertes
@@ -501,7 +501,7 @@ router.put('/:id', async (req: AuthRequest, res) => {
 
     // Construire l'objet de mise à jour
     const updateFields: any = {
-      updated_at: new Date().toISOString(),
+      updated_at: new Date(),
     };
 
     const allowedFields = [
@@ -571,7 +571,7 @@ router.put('/:id', async (req: AuthRequest, res) => {
         entity_type: 'criminal',
         entity_id: String(id),
         details: updateData, // Supabase convertit automatiquement en JSONB
-        created_at: new Date().toISOString(),
+        created_at: new Date(),
       });
 
     res.json({
@@ -624,7 +624,7 @@ router.delete('/:id', async (req: AuthRequest, res) => {
         entity_type: 'criminal',
         entity_id: String(id),
         details: { numero_criminel: existing.numero_criminel }, // Supabase convertit automatiquement en JSONB
-        created_at: new Date().toISOString(),
+        created_at: new Date(),
       });
 
     res.json({ message: 'Criminel supprimé avec succès' });
